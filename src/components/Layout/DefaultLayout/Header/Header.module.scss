@@ -1,0 +1,16 @@
+.wrapper{
+	// giư vững 100% khi vào view flex
+	width: 100%;
+	height: var(--default-layout-header-heigh, 60px);
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
+	// canh giữa mọi thứ 2 thẻ
+	display: flex;
+	justify-content: center;
+}
+
+.inner{
+	height: 100%;
+	width: var(--default-layout-width);
+	background-color: gray;
+
+}
