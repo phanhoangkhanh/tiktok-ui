@@ -3,6 +3,7 @@
 
 :root{
 	--primary: gray;
+	--text-color: #333;
 
 	// Default Layout
 	--default-layout-header-heigh: 60px;
@@ -24,4 +25,15 @@ body{
 	font-size: 1.6rem;
 	line-height: 1.5;
 	text-rendering: optimizespeed;
+}
+
+button, input, [tabindex]{
+	// tat cả thẻ và có tính tabindex đều sẽ none border và outline
+	outline: none;
+	border: none;
+}
+
+a[href]{
+	color: var(--text-color);
+	text-decoration: none;
 }

@@ -1,4 +1,8 @@
 .wrapper{
+
+	--search-height: 46px;
+	--search-button-width: 52px;
+
 	// giư vững 100% khi vào view flex
 	width: 100%;
 	height: var(--default-layout-header-heigh, 60px);
@@ -11,6 +15,98 @@
 .inner{
 	height: 100%;
 	width: var(--default-layout-width);
-	background-color: gray;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
+.logo{
+}
+
+.search-result{
+	width: 361px
+}
+
+.search{
+	width: 361px;
+	height: var(--search-height);
+	background-color: rgba(22, 24, 35, 0.1);
+	border-radius: 92px;
+	// chỉ cách lề trái , ko cách lề phải- đầy nút btn-search ra rìa
+	padding-left: 16px;
+	display: flex;
+	border-radius: 92px;
+	// giúp tạo nền cho các thẻ con dùng absolute căn cứ lên
+	position: relative;
+	border: 1.5px solid transparent;
+
+	input {
+		//thẻ input tràn ra toàn search
+		flex: 1; 
+		color: darkblue;
+		font-size: 1.6rem;
+		border: none;
+		outline: none;
+		background-color: transparent;
+		height: 100%;
+	}
+
+	// SUPER KINH ĐIỂN DÙNG CSS ĐỂ BẮT HIEN TƯỢNG VÀ THAY THẾ GIÁ TRI OBJ KHÁC
+	input:not(:placeholder-shown)~.search-btn{
+		color: black;
+	}
+
+	// them dấu /vào phần tử html bằng befor-after
+	&::after{
+		content: "";
+		width: 1px;
+		height: calc(var(--search-height) - 18px);
+		top:9px;
+		right: var(--search-button-width);
+		position: absolute;
+		background-color: rgba(22, 24, 35, 0.2);
+	}
+
+	//khi focus thì hiện outline đậm
+	&:focus-within{
+		border: 1.5px solid rgba(22, 24, 35, 0.2);
+	}
+}
+
+.search-title{
+	padding: 5px 12px;
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: gray;
+
+}
+
+.clear, .loading{
+
+	//căn cứ vào search lam nền - dùng right left top để căn cứ vị trí
+	position: absolute;
+	right: calc(var(--search-button-width) + 16px );
+	color: rgba(22, 24, 35, 0.4);
+
+	// căn giữa truc chieu doc 
+	top: 50%;
+	transform: translateY(-50%);
+
+}
+
+.search-btn{
+	width: var(--search-button-width);
+	height: 100%;
+	border: none;
+	outline: none;
+	border-top-right-radius: 92px;
+	border-bottom-right-radius: 92px;
+	background-color: transparent;
+	font-size: 1.8rem;
+	color: rgba(22, 24, 35, 0.5);
+
+	&:hover{
+		background-color: rgba(22, 24, 35, 0.03);
+		cursor: pointer;
+	}
 }
