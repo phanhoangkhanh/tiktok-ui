@@ -1,0 +1,94 @@
+.wrapper{
+	
+	display: inline-flex;
+	align-items: center;
+	justify-content : center;
+
+	min-width: 100px;
+	padding: 9px 16px;
+	border-radius: 4px;
+
+	font-size: 1.6rem;
+	font-weight: 700;
+
+	cursor: pointer;
+	border: 1px solid transparent;
+
+	//user ko thể chọn chữ dc tren DOM
+	user-select: none;
+
+	// hai nút cạnh nhau thì chọn như vầy - hai wrapper cạnh nhau- thằng sau sẽ có marginleft
+	+.wrapper{
+		margin-left: 8px;
+	}
+
+	//disabled cần ưu tiên cao hơn 
+	&.disabled{
+		pointer-events: none;
+		opacity: 0.5;
+	}
+}
+
+//rounded đứng trên cùng vì độ uu tiên thấp hơn
+.rounded{
+	// dùng số lơn lên để bo mạnh 
+	border-radius: 999px;
+
+	box-shadow: 0 2px 8px gray;
+	border-color: rgba(22, 24, 35, 0.12);
+
+	&:hover{
+		border-color: rgba(22, 24, 35, 0.2);
+		background-color: rgba(22, 24, 35, 0.1);
+	}
+}
+
+.primary{
+	color: var(--white);
+	background-color: var(--primary);
+
+	&:hover{
+
+		background: linear-gradient(131.17deg, #ff1764 0%, #ed3495 94.15%);
+	}
+}
+
+.outline{
+	border-color: var(--primary);
+	color: var(--primary);
+
+	&:hover{
+		background-color: rgba(254, 44, 85, 0.3);
+	}
+}
+
+.small{
+	min-width: 88px;
+	padding: 4px 16px;
+}
+
+.large{
+	min-width: 148px;
+	padding: 14px 16px;
+}
+
+.text{
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+.icon + .title,
+.title + .icon{
+	margin-left: 8px;	
+}
+
+.icon{
+	// dat cố định chieu rộng icon. inline-block để có thể set width
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+}
+
+
+
