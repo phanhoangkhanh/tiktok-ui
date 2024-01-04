@@ -18,6 +18,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding: 0px var(--default-layout-horizontal-spacer);
 }
 
 .logo{
@@ -123,6 +124,8 @@
 
 	//mở rông thêm vùng chọn để dễ chọn
 	padding: 8px;
+
+	cursor: pointer;
 }
 
 

@@ -21,7 +21,41 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
 	{
 		icon: <FontAwesomeIcon icon={faEarthAsia} />,
-		title: 'English'
+		title: 'English',
+		children: {
+			title: 'Language',
+			data:[
+				{
+					type: 'language',
+					code: 'en',
+					title: 'English'
+				},
+				{
+					code: 'vi',
+					title: 'VietNam >>',
+					children: {
+						title: 'Tiếng Việt',
+						data:[
+							{
+								type: 'language',
+								code: 'en',
+								title: 'Tiếng Tày'
+							},
+							{
+								type: 'language',
+								code: 'vi',
+								title: 'Tiếng Hmong',
+								
+							}
+						]
+					}
+				},
+				{
+					code: 'esp',
+					title: 'Espanish'
+				}
+			]
+		}
 	},
 	{
 		icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -38,6 +72,10 @@ const MENU_ITEMS = [
 function Header(){
 
 	const [searchResult, setSearchResult ] = useState(['ka']);
+
+	const handleMenuChange = (q) =>{
+		console.log(q);
+	}
 
 	return (
 
@@ -81,7 +119,7 @@ function Header(){
 				<Button text>Upload</Button>
 				<Button primary >Log in</Button>
 				{/*<Button  className={cx('custom-login')}>CSS Rg</Button>*/}
-				<Menu items={MENU_ITEMS}>
+				<Menu items={MENU_ITEMS} onChange={handleMenuChange}>
 					<button className={cx('more-btn')}>
 						<FontAwesomeIcon icon={faEllipsisVertical} />
 					</button>
