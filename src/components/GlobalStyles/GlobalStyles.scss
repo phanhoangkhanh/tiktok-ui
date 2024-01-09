@@ -40,3 +40,11 @@ a[href]{
 	color: var(--text-color);
 	text-decoration: none;
 }
+
+// custom tippy
+body .tippy-box{
+	background-color: rgba(84, 84, 84, 0.92);
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+}

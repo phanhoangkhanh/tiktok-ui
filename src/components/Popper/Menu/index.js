@@ -42,6 +42,7 @@ function Menu({children, items = [], onChange = defaultFn }){
 			// visible
 			// tra trong library atomiks.github
 			delay={[0, 800]}
+			offset={[12,8]}
 			placement = 'bottom-end'
 				render={ (attrs)=>(
 					<div className={cx('menu-list')} tabIndex="-1"  {...attrs}>
@@ -57,6 +58,8 @@ function Menu({children, items = [], onChange = defaultFn }){
 						</PopperWrapper>	
 					</div>			
 				)}
+				// khi ẩn thi kich fn trả về phần tử 0
+				onHide={()=>setHistory(prev => prev.slice(0,1))}
 			>
 
 			{children}

@@ -1,12 +1,16 @@
 import styles  from './Header.module.scss'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 // import Tippy from '@tippyjs/react';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 // import 'tippy.js/dist/tippy.css'; // optional
 import {useState} from 'react'
 
 import {faCircleXmark, faSpinner, faMagnifyingGlass, 
-	faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard} from '@fortawesome/free-solid-svg-icons'
+	faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard,
+	faCloudUpload, faMessage, faUser, faCoins ,faGear,
+	faSignOut} from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames/bind'
 import images from '@/assets/images'
 import {Wrapper as PopperWrapper} from '@/components/Popper'
@@ -18,6 +22,7 @@ import Button from '@/components/Button'
 const cx = classNames.bind(styles);
 // console.log(images)
 
+const currentUser = true;
 const MENU_ITEMS = [
 	{
 		icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -67,11 +72,38 @@ const MENU_ITEMS = [
 		title: 'Keyboard shortcuts'
 	},
 
-]
+] ;
+
+
 
 function Header(){
 
-	const [searchResult, setSearchResult ] = useState(['ka']);
+	const userMenu = [
+		{
+			icon: <FontAwesomeIcon icon={faUser} />,
+			title: 'view Profile',
+			to: '/@Hoa'
+		},
+		{
+			icon: <FontAwesomeIcon icon={faCoins} />,
+			title: 'Get Coins',
+			to: '/coin'
+		},
+		{
+			icon: <FontAwesomeIcon icon={faGear} />,
+			title: 'Setting',
+			to: '/setting'
+		},
+		...MENU_ITEMS,
+		{
+			icon: <FontAwesomeIcon icon={faSignOut} />,
+			title: 'Log Out',
+			to: '/logout',
+			seperate: true
+		},
+	];
+
+	const [searchResult, setSearchResult ] = useState(['k']);
 
 	const handleMenuChange = (q) =>{
 		console.log(q);
@@ -116,19 +148,48 @@ function Header(){
 			</Tippy>
 
 			<div className={cx('actions')}>
-				<Button text>Upload</Button>
-				<Button primary >Log in</Button>
-				{/*<Button  className={cx('custom-login')}>CSS Rg</Button>*/}
-				<Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+			{
+				currentUser 
+			? 
+			(
+				<>
+					<Tippy delay={[0, 200]} content="Upload Video">
+						<button className={cx('action-btn')}>
+							<FontAwesomeIcon icon={faCloudUpload} />
+						</button>
+					</Tippy>
+					<button className={cx('action-btn')}>
+						<FontAwesomeIcon icon={faMessage} />
+					</button>
+				</>
+			) 
+			: 
+			(
+				<>
+					<Button text>Upload</Button>
+					<Button primary >Log in</Button>
+					{/*<Button  className={cx('custom-login')}>CSS Rg</Button>*/}
+					
+				</>
+			)
+			}
+
+			<Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+				{ currentUser ? (
+					<img 
+					src="https://tiemanhsky.com/wp-content/uploads/2020/03/61103071_2361422507447925_6222318223514140672_n_1.jpg"
+					className={cx('user-avatar')} alt="nguyen van a" />
+				) : (
 					<button className={cx('more-btn')}>
 						<FontAwesomeIcon icon={faEllipsisVertical} />
 					</button>
-				</Menu>
+				)}
 				
+			</Menu>
+
+
 			</div>
 		</div>
-
-
 	</header>
 	
 	)
